@@ -7237,6 +7237,20 @@ document.addEventListener('DOMContentLoaded',()=>{
 });
 
 function initHolidays() {
+  // Pre-loaded Thai Public Holidays 2026
+  const defaults = [
+    { key: '2026-05-01', lbl: 'National Labor Day' },
+    { key: '2026-05-04', lbl: 'Coronation Day' },
+    { key: '2026-06-01', lbl: 'Substitution for Visakha Bucha Day' },
+    { key: '2026-06-03', lbl: "H.M. Queen's Birthday" },
+  ];
+  defaults.forEach(h => {
+    const full = h.key + '|' + h.lbl;
+    if (![...HOLIDAYS].some(x => x.startsWith(h.key))) {
+      HOLIDAYS.add(full);
+    }
+  });
+  saveHolidays();
   renderHolChips();
 }
 
